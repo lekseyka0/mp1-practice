@@ -5,10 +5,10 @@ int main(void)
 {
     float k, Tdvp, Tdsp, Td, m1, h, w, Pdvp, Pdsp, Pd, d;
 
-    Pdvp = 800;                    // Плотность ДВП
-    Pdsp = 735;                   // Плотность ДСП
-    Pd = 750;                    // Плотность дерева
-    Tdvp = 0.05;                // Толщина ДВП
+    Pdvp = 950;                    // Плотность ДВП
+    Pdsp = 650;                   // Плотность ДСП
+    Pd = 660;                    // Плотность дерева
+    Tdvp = 0.005;                // Толщина ДВП
     Tdsp = 0.015;              // Толщина ДСП
     Td = 0.01;                // Толщина дерева
     k = 0;                   // Счётчик
@@ -22,13 +22,13 @@ int main(void)
     h = h * 0.01;
     w = w * 0.01;
     d = d * 0.01;
-    m1 = (h * w * Tdvp * Pdvp) + (2.0 * h * d * Tdsp * Pdsp) + (2 * w * d * Tdsp * Pdsp) + (Td * h * w * Pd);
-    h = h - 2.0 * Tdsp;
-    while (h > 0.04) {
-        h = h - 0.04;
+    m1 = (h * w * Tdvp * Pdvp) + (2 * h * d * Tdsp * Pdsp) + (2 * w * d * Tdsp * Pdsp) + (Td * h * w * Pd);
+    h = h - 2 * Tdsp;
+    while (h > 0.4) {
+        h = h - 0.4;
         k = k + 1;
     }
-    m1 = m1 + k * (w * d * Tdsp * Pdsp);
+    m1 = m1 + k * ((w- 2 * Tdsp) * d * Tdsp * Pdsp);
     printf("Cabinet Weight = ");
     printf("%f", m1);
     return 0;
